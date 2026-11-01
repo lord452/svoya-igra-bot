@@ -357,3 +357,19 @@ if name == "main":
     print("Бот 'Своя Игра 6.0' успешно запущен!")
 
     bot.infinity_polling()
+   import threading
+   from flask import Flask
+
+   app = Flask(__name__)
+
+   @app.route('/')
+   def home():
+       return "Bot is alive!"
+
+   def run_web():
+       app.run(host="0.0.0.0", port=int(os.environ.get("PORT", 8080)))
+
+   if __name__ == "__main__":
+       threading.Thread(target=run_web, daemon=True).start()
+       print("Бот 'Своя Игра 6.0' успешно запущен!")
+       bot.infinity_polling()
